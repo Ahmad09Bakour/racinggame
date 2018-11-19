@@ -37,8 +37,8 @@ public class App {
         car.doorCount = 2;
         System.out.println(car.name);
 
-        double traveledDistance = car.accelerate(2313.321, 321312);
+        double traveledDistance = car.accelerate(99.5, 0.5);
 
-        System.out.println("Traveled distance: " + traveledDistance);
+        System.out.println("Traveled distance:" + traveledDistance);
     }
 }
