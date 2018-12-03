@@ -47,6 +47,5 @@ public class App {
         vehicle.setName("Jaguar");
         vehicle.setColor("Red");
         vehicle.accelerate(77);
-
     }
 }
