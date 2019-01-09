@@ -2,13 +2,30 @@ package org.fasttrackit;
 
 public class Vehicle {
 
-    // a example for the difference between class variables (Static) and instance variable (non-static)
+    // an example for the difference between class variables (Static) and instance variable (non-static)
     public static final String Type_Of_Fuel = "Diesel";  // final is to give it a value which will never change
                           // final class = class will never be inherited (hard coded)
     private String name;
     private String color;
     private Driver driver;
+    private double mileage;
+    private double fuelLevel;
 
+    public double getMileage() {
+        return mileage;
+    }
+
+    public void setMileage(double mileage) {
+        this.mileage = mileage;
+    }
+
+    public double getFuelLevel() {
+        return fuelLevel;
+    }
+
+    public void setFuelLevel(double fuelLevel) {
+        this.fuelLevel = fuelLevel;
+    }
 
     // useless method just to demonstrate co-variant return type example and extending access in overriding method
     protected Vehicle returnMyself(){
@@ -19,7 +36,13 @@ public class Vehicle {
     public double accelerate(double speed, double durationInHours) {
         // method body
         System.out.println("Acceleration speed: " + speed);
-        return speed * durationInHours;
+        double traveledDistance = speed * durationInHours;
+
+        double consumedFuel = mileage / traveledDistance * 100;
+        System.out.println("Consumed fuel: " + consumedFuel);
+        // this is the same as: fuelLevel = fuelLevel - consumedFuel;
+        fuelLevel -= consumedFuel;
+        return 0; //xxxx
     }
     // backward compatibility ... add a method which is used in the app in the past without changing it (overloading)
     // basically it's calling the same method with two ways or more ....

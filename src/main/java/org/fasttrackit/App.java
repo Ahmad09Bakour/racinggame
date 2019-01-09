@@ -7,6 +7,9 @@ package org.fasttrackit;
 public class App {
     public static void main(String[] args) {
 
+        Game game = new Game();
+        game.start();
+
         /*
         Engine truckEngine = new Engine();
         truckEngine.setManufacturer("Renault");
@@ -43,9 +46,25 @@ public class App {
         System.out.println("Traveled distance:" + traveledDistance);
 
         */
-        Vehicle vehicle = new Vehicle();
-        vehicle.setName("Jaguar");
-        vehicle.setColor("Red");
-        vehicle.accelerate(77);
+
+
+        /*
+        //Polymorphism (an object can take many forms)
+        Vehicle vehicle1 = new FakeVehicle();
+
+        // the implementation from the class of the object itself will be called, not from the class of the variable
+        vehicle1.accelerate(200, 2);
+
+        //you can only call methods exposed by the class of the variable
+        vehicle1.disappear();
+
+        //You can use type CASTING to temporarily change the type of the variable,
+        // so you can call methods from the class of the object itself
+        ((FakeVehicle) vehicle1).disappear();
+        // type casting is temporary, it doesn't permanently change the variable itself
+        vehicle1.disappear();
+        //you can only cast to related classes
+        (double) vehicle1;
+        */
     }
 }
