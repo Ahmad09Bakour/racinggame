@@ -26,7 +26,7 @@ public class Game {
         competitorsList.add(vehicle);
     }
 
-    public void start() {
+    public void start() throws Exception {
         addCompetitor(0);
         addCompetitor(1);
 
@@ -75,7 +75,7 @@ public class Game {
         }
     }
 
-    private int getPlayerCountFromUser() {
+    private int getPlayerCountFromUser() throws Exception {
         System.out.println("Please enter the number of players... We beg of thee");
         // user's input from the keyboard
         Scanner scanner = new Scanner(System.in);
@@ -86,6 +86,9 @@ public class Game {
              // we can have as many catch blocsks as we want
          }catch (NullPointerException exception) {
              System.out.println("test");
+
+             // example of throwing a checked and declaring it in the method signature
+             throw new Exception("We don't tolerate NOEs");
          }
          // example of recursion (a method callng itself)
          catch (InputMismatchException exception) {
