@@ -1,6 +1,7 @@
 package org.fasttrackit;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -34,6 +35,7 @@ public class Game {
 
         //printWelcomeMessage();
 
+        int numberOfPlayers = getPlayerCountFromUser();
         printWelcomeWithEnhancedFor();
 
         printWelcomeMessageFromList();
@@ -78,7 +80,21 @@ public class Game {
         // user's input from the keyboard
         Scanner scanner = new Scanner(System.in);
 
-        int userInput = scanner.nextInt();
+        int userInput=0;
+         try       {
+             userInput = scanner.nextInt();
+             // we can have as many catch blocsks as we want
+         }catch (NullPointerException exception) {
+             System.out.println("test");
+         }
+         // example of recursion (a method callng itself)
+         catch (InputMismatchException exception) {
+             System.out.println("Please enter a valid integer number.");
+             userInput = getPlayerCountFromUser();
+         } // finally block is optional and will always be executed at the end
+        finally {
+             System.out.println("Someting will always happen...");
+         }
 
         System.out.println("Your selected number of players: " + userInput);
 
