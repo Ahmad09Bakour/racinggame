@@ -9,7 +9,7 @@ public class Game {
     private Vehicle[] competitors = new Vehicle[10];
 
     private List<Vehicle> competitorsList = new ArrayList<>();
-
+    private Track track;
     public void addCompetitor(int index) {
         Vehicle vehicle = new Vehicle();
         vehicle.setName("Golf");
@@ -34,11 +34,38 @@ public class Game {
         addCompetitorsToList();
 
         //printWelcomeMessage();
+        // Default track but you can let the user decide what track to use
+        track = new Track();
+        track.setName("Default Track");
+        track.setLength(100);
 
         int numberOfPlayers = getPlayerCountFromUser();
         printWelcomeWithEnhancedFor();
 
         printWelcomeMessageFromList();
+        boolean noWinnerYet = true;
+        int roundNumber = 1;
+
+//        do {
+//            // with do-while you are sure that the 'do' block is executed at least once
+//            System.out.println("Message to be repeated");
+//        } while (noWinnerYet)
+
+        while (noWinnerYet) {
+            System.out.println("Round " + roundNumber);
+            for (Vehicle vihicle : competitorsList) {
+                double speed = getAccelerationSpeedFromUser();
+                vihicle.accelerate(speed);
+
+                if (vihicle.getTravelDistance() >= track.getLength()) {
+                    System.out.println("Congrats! Vehicle " + vihicle.getName() + " won the rece !");
+                    noWinnerYet = false;
+                    break;
+                }
+            }
+            roundNumber++;
+        }
+
     }
 
     private void printWelcomeMessage() {
@@ -102,5 +129,20 @@ public class Game {
         System.out.println("Your selected number of players: " + userInput);
 
         return userInput;
+    }
+    private double getAccelerationSpeedFromUser(){
+        System.out.println("Please enter the acceleration speed.");
+        Scanner scanner = new Scanner(System.in);
+        double userinput;
+
+        try {
+            userinput = scanner.nextDouble();
+        } catch (Exception e) {
+            System.out.println("Invalid value, please try again...");
+            userinput = getAccelerationSpeedFromUser();
+        }
+        System.out.println("You entered: " + userinput);
+        return userinput;
+
     }
 }

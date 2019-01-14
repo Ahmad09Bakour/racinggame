@@ -10,6 +10,7 @@ public class Vehicle {
     private Driver driver;
     private double mileage;
     private double fuelLevel;
+    private double travelDistance;
 
     public double getMileage() {
         return mileage;
@@ -32,17 +33,29 @@ public class Vehicle {
         return this;
     }
 
+    public double getTravelDistance() {
+        return travelDistance;
+    }
+
+    public void setTravelDistance(double travelDistance) {
+        this.travelDistance = travelDistance;
+    }
+
     //method signature: return type (void or something else) + nem + list of params (0 or more)
     public double accelerate(double speed, double durationInHours) {
         // method body
         System.out.println("Acceleration speed: " + speed);
-        double traveledDistance = speed * durationInHours;
+        double distance = speed * durationInHours;
 
-        double consumedFuel = mileage / traveledDistance * 100;
+        double consumedFuel = mileage / distance * 100;
         System.out.println("Consumed fuel: " + consumedFuel);
         // this is the same as: fuelLevel = fuelLevel - consumedFuel;
         fuelLevel -= consumedFuel;
-        return 0; //xxxx
+
+        travelDistance += distance;
+
+        System.out.println("Total traveld distance for vehicle " + name + ": " + travelDistance);
+        return distance;
     }
     // backward compatibility ... add a method which is used in the app in the past without changing it (overloading)
     // basically it's calling the same method with two ways or more ....
@@ -75,12 +88,16 @@ public class Vehicle {
     }
     // Use Alt + Insert to override th toString() method
 
+
     @Override
     public String toString() {
         return "Vehicle{" +
                 "name='" + name + '\'' +
                 ", color='" + color + '\'' +
                 ", driver=" + driver +
+                ", mileage=" + mileage +
+                ", fuelLevel=" + fuelLevel +
+                ", travelDistance=" + travelDistance +
                 '}';
     }
 }
