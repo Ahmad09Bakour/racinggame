@@ -1,5 +1,8 @@
 package org.fasttrackit;
 
+import org.fasttrackit.domain.User;
+import org.fasttrackit.service.UserService;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -8,6 +11,7 @@ import java.util.Scanner;
 public class Game {
     private Vehicle[] competitors = new Vehicle[10];
 
+    private UserService userService = new UserService();
     private List<Vehicle> competitorsList = new ArrayList<>();
     private Track track;
     public void addCompetitor(int index) {
@@ -24,6 +28,11 @@ public class Game {
 
         //adding something to the list
         competitorsList.add(vehicle);
+
+        User user = new User();
+        user.setName(vehicle.getName());
+        userService.createUser(user);
+
     }
 
     public void start() throws Exception {
